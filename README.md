@@ -1,5 +1,4 @@
 # 半自動化安裝彰化縣公文系統(autoeic4chcg)
-## 0. 原始程式碼取自 https://github.com/lyshie/autoeic
 ## 1. 半自動化安裝的項目步驟？
 - M_右鍵另存連結「autoeic4chcg.cmd」，右鍵以「系統管理員身分」執行
 - A_關閉通訊錄程式
@@ -22,5 +21,9 @@
 ## 2. 測試環境
 - Windows 10 企業版(1930) OK
 
-## 3. 修改者
+## 3. 作者
 - Qing-Zhan Li (@ Ding-Fan elementary school )
+
+## 4. 參考資料
+- 原始程式碼取自 https://github.com/lyshie/autoeic
+- 哈!!伸港玩資訊!!哈 (http://skjhmis.blogspot.com/2019/09/bat_25.html)
