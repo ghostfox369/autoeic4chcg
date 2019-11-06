@@ -1,5 +1,5 @@
-@echo �۰ʦw�˹��ƿ�����t��
-@echo ���{���ק��https://github.com/lyshie/autoeic
+@echo 自動安裝彰化縣公文系統
+@echo 本程式修改自https://github.com/lyshie/autoeic
 @echo off
 
 SET "doc_source=https://edit.chcg.gov.tw/kw/docnet/service/formbinder/install/down/docNinstall.msi"
@@ -21,13 +21,13 @@ FOR /F %%A IN ('WMIC OS GET LocalDateTime ^| FINDSTR \.') DO @SET B=%%A
 SET "datetime=%B:~0,8%-%B:~8,6%"
 REM SET "backup=eic_%B:~0,8%-%B:~8,6%"
 
-echo 01_�����q�T���{��
+echo 01_關閉通訊錄程式
 taskkill /im "Comp.exe" /f >nul 2>&1
 
-echo 02_��������s�@�t��
-wmic product where name="��ѽs��-����s�@�t��" call uninstall >nul 2>&1
+echo 02_移除公文製作系統
+wmic product where name="文書編輯-公文製作系統" call uninstall >nul 2>&1
 
-echo 03_�R�����۰ʲ������ɮ� (eic*)
+echo 03_刪除未自動移除的檔案 (eic*)
 del "%windir%\System32\eicdocn.dll"   >nul 2>&1
 del "%windir%\System32\eicsecure.dll" >nul 2>&1
 del "%windir%\System32\eicsign.dll"   >nul 2>&1
@@ -37,22 +37,22 @@ del "%windir%\SysWOW64\eicsecure.dll" >nul 2>&1
 del "%windir%\SysWOW64\eicsign.dll"   >nul 2>&1
 del "%windir%\SysWOW64\eicpdf.dll"    >nul 2>&1
 
-echo 04_����(�ƥ�)�J���q�T���A�B�z�q�T�����`���D
+echo 04_移除(備份)既有通訊錄，處理通訊錄異常問題
 ren "%adbook%\chcg"  "chcg_%datetime%"  >nul 2>&1
 ren "%adbook%\chcg4" "chcg4_%datetime%" >nul 2>&1
 
-REM �ƥ��쥻����Ƨ�
+REM 備份原本的資料夾
 REM IF EXIST "%origin%" (
 REM     ren "%origin%" "%backup%" >nul 2>&1
 REM ) ELSE (
 REM     REM nothing
 REM )
 
-echo 05_�]�m����t�ά�����
+echo 05_設置公文系統為首頁
 set IEpath=HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main
 reg add "%IEpath%" /v "Start Page" /t REG_SZ /d http://gdms.chcg.gov.tw/ /f
 
-echo 06_IE�H�������]�w
+echo 06_IE信任網站設定
 IF EXIST "%ieset_target%" (
     REM nothing
 ) ELSE (
@@ -66,7 +66,7 @@ IF EXIST "%ieset_target%" (
 %ieset_target%
 
 
-echo 07_�U���P�w�ˤ���t��
+echo 07_下載與安裝公文系統
 IF EXIST "%doc_target%" (
     REM nothing
 ) ELSE (
@@ -79,16 +79,16 @@ IF EXIST "%doc_target%" (
 )
 msiexec /i "%doc_target%" /quiet >nul 2>&1
 
-PAUSE echo 08_ESC������ܹw�]�}�Ҫ��s����
+PAUSE echo 08_ESC取消選擇預設開啟的瀏覽器
 
-echo 09_�j�������ϥΤ��� IE �s����
+echo 09_強制關閉使用中的 IE 瀏覽器
 taskkill /im "iexplore.exe" /f >nul 2>&1
 
 REM SET "newwindows=HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\New Windows\Allow"
-REM echo �N chcg.gov.tw ����[�J�������ꪺ�ҥ~����
+REM echo 將 chcg.gov.tw 網域加入到快顯封鎖的例外網站
 REM reg add "%newwindows%" /v "chcg.gov.tw" /t REG_BINARY /d "0000" /f >nul 2>nul
 
-echo 10_�U���w�]�q�T��
+echo 10_下載預設通訊錄
 IF EXIST "%adbook_target%" (
     REM nothing
 ) ELSE (
@@ -100,7 +100,7 @@ IF EXIST "%adbook_target%" (
     bitsadmin /transfer "adbook" /download /priority normal "%adbook_source%" "%adbook_target%"
 )
 
-echo 11_�U�� Unzip
+echo 11_下載 Unzip
 IF EXIST "%unzip_exec%" (
     REM nothing
 ) ELSE (
@@ -113,7 +113,7 @@ IF EXIST "%unzip_exec%" (
 )
 %unzip_exec% -o "%adbook_target%" -d "%adbook%"
 
-echo 12_�ץ� 106-08-01 �s���۵M�H���ҡA��s HiCOSPKCS11_219.dll
+echo 12_修正 106-08-01 新版自然人憑證，更新 HiCOSPKCS11_219.dll
 IF EXIST "%hicos_target%" (
     REM nothing
 ) ELSE (
@@ -136,11 +136,11 @@ ren "%windir%\SysWOW64\HiCOSPKCS11_219.dll" "HiCOSPKCS11_219.dll.old"    >nul 2>
 copy /y "%windir%\System32\HiCOSPKCS11.dll" "%windir%\System32\HiCOSPKCS11_219.dll"    >nul 2>&1
 copy /y "%windir%\SysWOW64\HiCOSPKCS11.dll" "%windir%\SysWOW64\HiCOSPKCS11_219.dll"    >nul 2>&1
 
-echo 13_�}�ҹ��ƿ���������A�ШϥΪ̵n�J�����t�������˴�
+echo 13_開啟彰化縣公文網站，請使用者登入執行後系統環境檢測
 "%ProgramFiles%\Internet Explorer\iexplore.exe" "http://gdms.chcg.gov.tw"
 
-echo 14_�}�Ҥ�ѽs��-����s�@�]�|�۰�����ѽs�襭�x�A�ШϥΪ̵n�J�äU���ϥΪ̸�ơ^
+echo 14_開啟文書編輯-公文製作（會自動轉到文書編輯平台，請使用者登入並下載使用者資料）
 "%ProgramFiles%\Internet Explorer\iexplore.exe" "C:\eic\docnet\formbinder\login.htm"
 
-echo 15_�A���}�Ҥ�ѽs��-����s�@�]�q�T�����P�B�^
+echo 15_再次開啟文書編輯-公文製作（通訊錄的同步）
 "%ProgramFiles%\Internet Explorer\iexplore.exe" "C:\eic\docnet\formbinder\login.htm"
