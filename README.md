@@ -1,6 +1,6 @@
 # 半自動化安裝彰化縣公文系統(autoeic4chcg)
 ## 1. 半自動化安裝的項目步驟？
-- M_右鍵另存連結「autoeic4chcg.cmd」，右鍵以「系統管理員身分」執行
+- M_右鍵另存連結「[`autoeic4chcg.cmd`](https://raw.githubusercontent.com/ghostfox369/autoeic4chcg/master/autoeic4chcg.cmd)」，右鍵以「系統管理員身分」執行
 - A_關閉通訊錄程式
 - A_移除公文製作系統
 - A_刪除未自動移除的檔案 (eic*)
