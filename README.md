@@ -19,7 +19,7 @@
 - A_等待公文通訊錄同步完成
 
 ## 2. 測試環境
-- Windows 10 企業版(1930) OK
+- Windows 10 企業版(1903) OK
 
 ## 3. 作者
 - Qing-Zhan Li (@ Ding-Fan elementary school )
