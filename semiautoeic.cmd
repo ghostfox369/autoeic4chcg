@@ -3,7 +3,8 @@
 @echo off
 
 echo 00_新增暫存資料夾
-md "c:\eictemp"
+md "%~dp0eictemp"
+REM　md "c:\eictemp"
 
 SET "doc_source=https://edit.chcg.gov.tw/kw/docnet/service/formbinder/install/down/docNinstall.msi"
 SET "doc_target=c:\eictemp\docNinstall.msi"
