@@ -22,7 +22,7 @@
 - Windows 10 企業版(1903) OK
 
 ## 3. 注意事項
-- ![001](/001.png)
+- ![001](/001.jpg)
 
 ## 4. 作者
 - Qing-Zhan Li (@ Ding-Fan elementary school )
