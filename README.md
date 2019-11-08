@@ -23,10 +23,12 @@
 
 ## 3. 注意事項
 - ![001](/001.jpg)
+- ![002](/002.jpg)
+- ![003](/003.jpg)
 
 ## 4. 作者
 - Qing-Zhan Li (@ Ding-Fan elementary school )
 
-## 4. 參考資料
+## 5. 參考資料
 - 原始程式碼取自 https://github.com/lyshie/autoeic
 - 哈!!伸港玩資訊!!哈 (http://skjhmis.blogspot.com/2019/09/bat_25.html)
